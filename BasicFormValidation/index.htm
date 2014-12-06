@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="myApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+  <style>
+      .has-error{
+          color:red;
+      }
+      input.ng-invalid{
+          border:3px solid red;
+      }
+  </style>
+      
+  </head>
+  <body >
+    <div ng-controller="myCtrl">
+      <label>Name:</label>
+      <form name="myForm" novalidate>
+        <input name="name" type="text" ng-model="name" placeholder="Enter a name here"
+      required>
+      <p class="has-error" ng-show="myForm.name.$error.required">name cannot empty</p>
+      <br/>
+          <input name="email" type="text" ng-model="email" placeholder="Enter a email here"
+      required ng-minlength="3">
+      <p class="has-error" ng-show="myForm.email.$error.required">email cannot empty</p>
+      <p class="has-error" ng-show="myForm.email.$error.minlength">email minlength 32</p>
+      <br/>
+          <input type="submit" value="send"/>
+      </form>
+ 
+      <br/>
+      
+      <hr>
+   
+      <h2>Hello {{name}}</h2>
+        <hr>
+        <p>myForm $valid:{{myForm.$valid}}</p>
+        <p>myForm $invalid:{{myForm.$invalid}}</p>
+        <p>name $error:{{myForm.name.$error}}</p>
+    </div>
+    
+    <script>
+        var app=angular.module("myApp",[]);
+        app.controller("myCtrl",function($scope){
+            $scope.name="";
+            $scope.email="";
+        })
+    </script>
+  </body>
+</html>
